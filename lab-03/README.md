@@ -9,7 +9,7 @@
 | Field | Details |
 |---|---|
 | **Student Name** | Shaik Irfan Basha |
-| **Registration Number** | 2501R11228 |
+| **Registration Number** | 252U1R1228 |
 | **Section** | CSE-CORE-2E |
 | **Course** | Backend Development Fundamentals |
 | **Faculty** | Mr Yugandhar Gurjalwar |
@@ -547,7 +547,7 @@ Through **Lab 3**, I achieved the following learning outcomes:
 ## 👤 Author & Academic Attribution
 
 **Shaik Irfan Basha**  
-**Registration Number:** `2501R11228`  
+**Registration Number:** `252U1R1228`  
 **Section:** `CSE-CORE-2E`  
 **Department of Computer Science & Engineering**  
 **Aurora Deemed-to-be-University**

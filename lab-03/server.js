@@ -87,7 +87,7 @@ app.get('/', (request, response) => {
     message: 'Lab 3: REST API, Query Parameters, Validation, and Debugging',
     student: {
       name: 'Shaik Irfan Basha',
-      registrationNumber: '2501R11228',
+      registrationNumber: '252U1R1228',
       section: 'CSE-CORE-2E',
       faculty: 'Mr Yugandhar Gurjalwar',
       college: 'Aurora Deemed-to-be-University'
