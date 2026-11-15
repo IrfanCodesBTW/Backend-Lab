@@ -1,34 +1,141 @@
-### ==============================================
-### REST Client - Lab 04 Express API Tests
-### Extension: REST Client (Huachao Mao)
-### ==============================================
+### ==============================================================================
+### REST Client - Lab 04: Registration, Login, and JWT Token Authentication
+### Course: Backend Development Fundamentals · Aurora Deemed-to-be-University
+### Student: Shaik Irfan Basha (252U1R1228) · Section: CSE-CORE-2E
+### Extension: REST Client (Huachao Mao in VS Code)
+### ==============================================================================
 
 @baseUrl = http://localhost:3000
 
-### 1. Test Root Route
+### ------------------------------------------------------------------------------
+### 1. Root / Server Information Endpoint
+### ------------------------------------------------------------------------------
 GET {{baseUrl}}/
 Accept: application/json
 
-###
-
-### 2. Test About / Health Route
-GET {{baseUrl}}/about
-Accept: application/json
-
-###
-
-### 3. Test Time Route
-GET {{baseUrl}}/time
-Accept: text/plain
-
-###
-
-### 4. Test API Health (if present)
+### ------------------------------------------------------------------------------
+### 2. Health Check Endpoint
+### ------------------------------------------------------------------------------
 GET {{baseUrl}}/api/health
 Accept: application/json
 
-###
+### ------------------------------------------------------------------------------
+### 3. Register User 1: Successful Registration (HTTP 200)
+### ------------------------------------------------------------------------------
+POST {{baseUrl}}/register/
+Content-Type: application/json
 
-### 5. Test 404 Not Found Route
-GET {{baseUrl}}/non-existent-route
-Accept: text/plain
+{
+  "username": "irfan",
+  "name": "Shaik Irfan Basha",
+  "password": "password123",
+  "gender": "Male",
+  "location": "Hyderabad"
+}
+
+### ------------------------------------------------------------------------------
+### 4. Register Duplicate User: Existing Username Rejected (HTTP 400)
+### Expected Response: "User already exists" (Status: 400 Bad Request)
+### ------------------------------------------------------------------------------
+POST {{baseUrl}}/register/
+Content-Type: application/json
+
+{
+  "username": "irfan",
+  "name": "Shaik Irfan Duplicate",
+  "password": "password123",
+  "gender": "Male",
+  "location": "Hyderabad"
+}
+
+### ------------------------------------------------------------------------------
+### 5. Register with Password Too Short: Validation Error (HTTP 400)
+### Expected Response: "Password is too short" (Status: 400 Bad Request)
+### ------------------------------------------------------------------------------
+POST {{baseUrl}}/register/
+Content-Type: application/json
+
+{
+  "username": "rahul",
+  "name": "Rahul Verma",
+  "password": "123",
+  "gender": "Male",
+  "location": "Bangalore"
+}
+
+### ------------------------------------------------------------------------------
+### 6. Register User 2: Successful Registration (HTTP 200)
+### ------------------------------------------------------------------------------
+POST {{baseUrl}}/register/
+Content-Type: application/json
+
+{
+  "username": "rahul",
+  "name": "Rahul Verma",
+  "password": "rahulPassword456",
+  "gender": "Male",
+  "location": "Bangalore"
+}
+
+### ------------------------------------------------------------------------------
+### 7. View Database Users: Confirm bcrypt Hash Storage Only (HTTP 200)
+### Verifies passwords are NEVER stored in plain text (shows $2b$10$... hashes)
+### ------------------------------------------------------------------------------
+GET {{baseUrl}}/users/
+Accept: application/json
+
+### ------------------------------------------------------------------------------
+### 8. Login - Unknown User Rejected (HTTP 400)
+### Expected Response: "Invalid user" (Status: 400 Bad Request)
+### ------------------------------------------------------------------------------
+POST {{baseUrl}}/login/
+Content-Type: application/json
+
+{
+  "username": "ghost_user",
+  "password": "password123"
+}
+
+### ------------------------------------------------------------------------------
+### 9. Login - Wrong Password Rejected (HTTP 400)
+### Expected Response: "Invalid password" (Status: 400 Bad Request)
+### ------------------------------------------------------------------------------
+POST {{baseUrl}}/login/
+Content-Type: application/json
+
+{
+  "username": "irfan",
+  "password": "wrongPasswordXYZ"
+}
+
+### ------------------------------------------------------------------------------
+### 10. Login - Valid Credentials for User 1 (HTTP 200)
+### Expected Response: { "jwt_token": "eyJhbGciOi..." } (Status: 200 OK)
+### ------------------------------------------------------------------------------
+# @name loginIrfan
+POST {{baseUrl}}/login/
+Content-Type: application/json
+
+{
+  "username": "irfan",
+  "password": "password123"
+}
+
+### ------------------------------------------------------------------------------
+### 11. Login - Valid Credentials for User 2 (HTTP 200)
+### Expected Response: { "jwt_token": "eyJhbGciOi..." } (Status: 200 OK)
+### ------------------------------------------------------------------------------
+# @name loginRahul
+POST {{baseUrl}}/login/
+Content-Type: application/json
+
+{
+  "username": "rahul",
+  "password": "rahulPassword456"
+}
+
+### ------------------------------------------------------------------------------
+### 12. 404 Route Not Found Test
+### ------------------------------------------------------------------------------
+GET {{baseUrl}}/api/non-existent-endpoint
+Accept: application/json
