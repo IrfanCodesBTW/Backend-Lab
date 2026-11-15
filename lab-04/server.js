@@ -66,7 +66,7 @@ app.get('/', (req, res) => {
     lab: 'Lab 4: Registration, login and JWT',
     course: 'Backend Development Fundamentals',
     institution: 'Aurora Deemed-to-be-University',
-    faculty: 'Joel Prashanth D',
+    faculty: 'Mr Yugandhar Gurjalwar',
     student: {
       name: 'Shaik Irfan Basha',
       registrationNumber: '252U1R1228',

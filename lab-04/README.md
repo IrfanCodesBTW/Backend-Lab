@@ -12,7 +12,7 @@
 | **Registration Number** | 252U1R1228 |
 | **Section** | CSE-CORE-2E |
 | **Course** | Backend Development Fundamentals · Year II Term II |
-| **Faculty** | Joel Prashanth D |
+| **Faculty** | Mr Yugandhar Gurjalwar |
 | **Institution** | Aurora Deemed-to-be-University |
 | **GitHub Repository** | [https://github.com/IrfanCodesBTW/Backend-Lab.git](https://github.com/IrfanCodesBTW/Backend-Lab.git) |
 | **Repository Path** | `lab-04/` |
